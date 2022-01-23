@@ -17,6 +17,19 @@ NEW_GROUP_LIST = reverse('posts:group_list', args=['test_new_group'])
 PROFILE = reverse('posts:profile', kwargs={'username': 'test_author'})
 CREATE = reverse('posts:post_create')
 FOLLOW_INDEX = reverse('posts:follow_index')
+SMALL_GIF = (
+    b'\x47\x49\x46\x38\x39\x61\x02\x00'
+    b'\x01\x00\x80\x00\x00\x00\x00\x00'
+    b'\xFF\xFF\xFF\x21\xF9\x04\x00\x00'
+    b'\x00\x00\x00\x2C\x00\x00\x00\x00'
+    b'\x02\x00\x01\x00\x00\x02\x02\x0C'
+    b'\x0A\x00\x3B'
+)
+UPLOADED = SimpleUploadedFile(
+            name='small.gif',
+            content=SMALL_GIF,
+            content_type='image/gif'
+        )
 
 
 @override_settings(MEDIA_ROOT=TEMP_MEDIA_ROOT)
@@ -24,19 +37,7 @@ class PostViewsTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        small_gif = (
-            b'\x47\x49\x46\x38\x39\x61\x02\x00'
-            b'\x01\x00\x80\x00\x00\x00\x00\x00'
-            b'\xFF\xFF\xFF\x21\xF9\x04\x00\x00'
-            b'\x00\x00\x00\x2C\x00\x00\x00\x00'
-            b'\x02\x00\x01\x00\x00\x02\x02\x0C'
-            b'\x0A\x00\x3B'
-        )
-        cls.uploaded = SimpleUploadedFile(
-            name='small.gif',
-            content=small_gif,
-            content_type='image/gif'
-        )
+        
         cls.guest_client = Client()
 
         cls.user = User.objects.create_user(username='test_user')
@@ -57,7 +58,7 @@ class PostViewsTests(TestCase):
             text='test_text',
             group=cls.group,
             author=cls.author,
-            image=cls.uploaded,
+            image=UPLOADED,
         )
         cls.POST_EDIT = reverse('posts:post_edit', args=[cls.post.id])
         cls.POST_DETAIL = reverse('posts:post_detail', args=[cls.post.id])

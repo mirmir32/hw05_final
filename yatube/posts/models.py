@@ -1,5 +1,6 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
+from django.db.models import CheckConstraint, F, UniqueConstraint, Q
 
 User = get_user_model()
 
@@ -44,7 +45,7 @@ class Post(models.Model):
         ordering = ('-pub_date',)
 
     def __str__(self):
-        return self.text
+        return self.text[:15]
 
 
 class Comment(models.Model):
@@ -74,7 +75,7 @@ class Comment(models.Model):
     )
 
     class Meta:
-        ordering = ['-created']
+        ordering = ('-created',)
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
 
@@ -95,3 +96,14 @@ class Follow(models.Model):
         related_name='following',
         verbose_name='Имя автора',
     )
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(fields=['user', 'author'],
+                                    name='unique_followings'),
+            CheckConstraint(check=~Q(user=F('author')),
+                                   name='self_followings')
+        ]
+
+    def __str__(self):
+        return f'{self.user} подписан на {self.author}'
