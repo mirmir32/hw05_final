@@ -100,9 +100,9 @@ class Follow(models.Model):
     class Meta:
         constraints = [
             UniqueConstraint(fields=['user', 'author'],
-                                    name='unique_followings'),
+                             name='unique_followings'),
             CheckConstraint(check=~Q(user=F('author')),
-                                   name='self_followings')
+                            name='self_followings')
         ]
 
     def __str__(self):

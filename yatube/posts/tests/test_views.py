@@ -26,10 +26,10 @@ SMALL_GIF = (
     b'\x0A\x00\x3B'
 )
 UPLOADED = SimpleUploadedFile(
-            name='small.gif',
-            content=SMALL_GIF,
-            content_type='image/gif'
-        )
+    name='small.gif',
+    content=SMALL_GIF,
+    content_type='image/gif'
+)
 
 
 @override_settings(MEDIA_ROOT=TEMP_MEDIA_ROOT)
@@ -37,7 +37,7 @@ class PostViewsTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        
+
         cls.guest_client = Client()
 
         cls.user = User.objects.create_user(username='test_user')

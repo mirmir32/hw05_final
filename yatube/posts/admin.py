@@ -21,9 +21,9 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(Group)
 class GroupAdmin(admin.ModelAdmin):
     list_display = (
-        'pk', 
-        'title', 
-        'slug', 
+        'pk',
+        'title',
+        'slug',
         'description',
     )
     search_fields = ('title', 'slug', 'description',)
@@ -33,8 +33,8 @@ class GroupAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = (
-        'pk', 
-        'text', 
+        'pk',
+        'text',
         'author',
     )
     search_fields = ('text', 'author',)
