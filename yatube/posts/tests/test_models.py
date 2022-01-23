@@ -19,7 +19,7 @@ class PostModelTest(TestCase):
             author=cls.user,
         )
 
-    def test_models_have_correct_object_names(self):
+    def test_post_model_correct(self):
         group = PostModelTest.group
         post = PostModelTest.post
         expected_group_str = group.title
@@ -38,7 +38,7 @@ class GroupModelTest(TestCase):
             description='test_group_description',
         )
 
-    def test_object_name_is_title_field(self):
+    def test_group_model_correct(self):
         group = GroupModelTest.group
         expected_group_str = group.title
         self.assertEqual(expected_group_str, str(group))
@@ -60,7 +60,7 @@ class CommentModelTest(TestCase):
             text='test_post'
         )
 
-    def test_object_name_is_title_field(self):
+    def test_comment_modle_correct(self):
         comment = CommentModelTest.comment
         expected_comment_str = comment.text
         self.assertEqual(expected_comment_str, str(comment))
@@ -77,7 +77,7 @@ class FollowModelTest(TestCase):
             author=cls.author
         )
 
-    def test_object_name_is_title_field(self):
+    def test_follow_model_correct(self):
         follow = FollowModelTest.follow
         expected_object_name = f'{follow.user} подписан на {follow.author}'
         self.assertEqual(expected_object_name, str(follow))
