@@ -4,9 +4,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = '0jvyr+e!g@5jh%*1r1)o(6(%ah65wi+25u&*t55lk#o(9q*26d'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver', ]
+ALLOWED_HOSTS = ['84.201.163.135', '127.0.0.1', 'localhost', 'testserver', ]
 
 INSTALLED_APPS = [
     'posts.apps.PostsConfig',

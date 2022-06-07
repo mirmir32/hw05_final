@@ -40,7 +40,7 @@ def profile(request, username):
     post = author.posts.all()
     number_of_posts = author.posts.count()
     paginator = Paginator(post, settings.NUM_PAGES)
-    page_number = request.GET.get("page")
+    page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     following = Follow.objects.filter(
         user__username=request.user, author=author
@@ -51,7 +51,7 @@ def profile(request, username):
         'number_of_posts': number_of_posts,
         'following': following,
     }
-    return render(request, "posts/profile.html", context)
+    return render(request, 'posts/profile.html', context)
 
 
 def post_detail(request, post_id):

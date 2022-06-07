@@ -146,8 +146,6 @@ dmypy.json
 .mypy_cache
 
 #Папки
-static/
-media/
 
 htmlcov/
 .coverage
