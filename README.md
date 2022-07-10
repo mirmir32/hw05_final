@@ -12,7 +12,7 @@ Python, Django, SQLite, HTML
 
 Клонировать репозиторий проекта локально:
 ```
-git clone https://github.com/SergeSGH/hw05_final.git
+git clone https://github.com/mirmir32/hw05_final.git
 ```
 Установить виртуальное коружение, сделать миграции, создать суперпользователя, запустить сайт:
 ```
